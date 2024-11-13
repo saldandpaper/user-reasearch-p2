@@ -12,7 +12,43 @@
         <h1 class="title">
             User Research Phase 2
         </h1>
+
+
     </header>
+        <nav class="navbar">
+            <ul id="navbar-links">
+                <!-- Links will be generated here -->
+            </ul>
+        </nav>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const blocks = document.querySelectorAll('.block');
+                    const navbarLinks = document.getElementById('navbar-links');
+            
+                    blocks.forEach((block, index) => {
+                        const sectionId = `block-section-${index + 1}`;
+                        block.setAttribute('id', sectionId);
+            
+                        const listItem = document.createElement('li');
+                        const link = document.createElement('a');
+                        link.href = `#${sectionId}`;
+            
+                        // Custom labels for sections 6 and 7
+                        if (index === 5) {
+                            link.textContent = "Interview Questions";
+                        } else if (index === 6) {
+                            link.textContent = "Actual Interview Questions";
+                        } else {
+                            link.textContent = block.querySelector('h1') ? block.querySelector('h1').textContent : `Section ${index + 1}`;
+                        }
+            
+                        listItem.appendChild(link);
+                        navbarLinks.appendChild(listItem);
+                    });
+                });
+            </script>
+    
     <section class="block">
         <h1 >
             1. Data Summary
@@ -1609,10 +1645,28 @@
         </p>
     </section>
 
-    
-    <div>
-         
-    </div>
-    
+    <button id="backToTopBtn" class="back-to-top">↑ Back to Top</button>
+
+    <script>
+        // Show the "Back to Top" button when scrolling down
+const backToTopBtn = document.getElementById("backToTopBtn");
+
+window.onscroll = function() {
+    if (window.scrollY > 300) { // Show button after scrolling down 300px
+        backToTopBtn.classList.add("visible");
+    } else {
+        backToTopBtn.classList.remove("visible");
+    }
+};
+
+// Smooth scroll back to top when button is clicked
+backToTopBtn.onclick = function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+};
+    </script>
+
 </body>
 </html>
